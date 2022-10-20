@@ -1,4 +1,4 @@
-version: "3.1"
+version: "3.8"
 
 services:
 
@@ -27,7 +27,15 @@ services:
             
         ports: 
             - 8000:80
-   
-   
+      
+    pgadmin:
+
+        image: dpage/pgadmin4:latest
+        environment:
+            PGADMIN_DEFAULT_EMAIL: usuarioadmin@gmail.com
+            PGADMIN_DEFAULT_PASSWORD: passadmin
+        ports: 
+            - 8001:80
+      
 
             
