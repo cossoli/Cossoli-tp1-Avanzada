@@ -34,7 +34,7 @@ class Usuario extends \yii\db\ActiveRecord
             [['passwword', 'authKey', 'accesToken'], 'default', 'value' => null],
             [['passwword', 'authKey', 'accesToken'], 'integer'],
             [['name'], 'string', 'max' => 80],
-            [['apellido'], 'string', 'max' => 255],
+            [['apellido','required'], 'string', 'max' => 255, 'value' => null],
         ];
     }
 
