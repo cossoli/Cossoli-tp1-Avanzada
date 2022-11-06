@@ -12,6 +12,7 @@ use Yii;
  * @property int|null $passwword
  * @property int|null $authKey
  * @property int|null $accesToken
+ * @property string|null $apellido
  */
 class Usuario extends \yii\db\ActiveRecord
 {
@@ -33,6 +34,7 @@ class Usuario extends \yii\db\ActiveRecord
             [['passwword', 'authKey', 'accesToken'], 'default', 'value' => null],
             [['passwword', 'authKey', 'accesToken'], 'integer'],
             [['name'], 'string', 'max' => 80],
+            [['apellido'], 'string', 'max' => 255],
         ];
     }
 
@@ -47,6 +49,7 @@ class Usuario extends \yii\db\ActiveRecord
             'passwword' => 'Passwword',
             'authKey' => 'Auth Key',
             'accesToken' => 'Acces Token',
+            'apellido' => 'Apellido',
         ];
     }
 }

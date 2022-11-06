@@ -28,7 +28,7 @@ class m221020_185228_crear_tabla_usuarios extends Migration
     {
         $this->dropTable('usuario');;
 
-        return false;
+        return true;
     }
 
     /*
