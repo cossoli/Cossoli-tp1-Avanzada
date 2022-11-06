@@ -14,7 +14,8 @@ use Yii;
  * @property int|null $accesToken
  * @property string|null $apellido
  */
-class Usuario extends \yii\db\ActiveRecord
+class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+
 {
     /**
      * {@inheritdoc}
@@ -52,4 +53,39 @@ class Usuario extends \yii\db\ActiveRecord
             'apellido' => 'apellido',
         ];
     }
+
+    public static function findIdentity($id)
+    {
+        return self::findOne($id);
+    }
+     
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return self::findOne(['accesToken'=>$token]);
+    }
+    
+    public static function findbYUsername ($username)
+    {
+       return self::findOne(['username'=>$username]);    
+
+    }
+    public function getId()
+    {
+        return $this->id;
+
+    }
+    public function getAuthKey()
+    {
+        return $this->authkey;
+    }
+    
+    public function validateAuthKey($authKey)
+    {
+        return $this->authKey ===$authKey;
+    } 
+    public function validatePassword($password)
+    {
+        return password_verify($password, $this->passwword);
+    }
+
 }
