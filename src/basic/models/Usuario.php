@@ -31,10 +31,10 @@ class Usuario extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['passwword', 'authKey', 'accesToken'], 'default', 'value' => null],
-            [['passwword', 'authKey', 'accesToken'], 'integer'],
+            //[['passwword', 'authKey', 'accesToken'], 'default', 'value' => null],
+            //[['passwword', 'authKey', 'accesToken'], 'integer'],
             [['name'], 'string', 'max' => 80],
-            [['apellido','required'], 'string', 'max' => 255, 'value' => null],
+            [['apellido', 'required '], 'string', 'max' => 255],
         ];
     }
 
@@ -45,11 +45,11 @@ class Usuario extends \yii\db\ActiveRecord
     {
         return [
             'username' => 'Username',
-            'name' => 'Name',
+            'name' => 'Nombre',
             'passwword' => 'Passwword',
-            'authKey' => 'Auth Key',
-            'accesToken' => 'Acces Token',
-            'apellido' => 'Apellido',
+            'authKey' => 'AuthKey',
+            'accesToken' => 'AccesToken',
+            'apellido' => 'apellido',
         ];
     }
 }

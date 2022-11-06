@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\models\Usuario;
 use app\models\UsuarioSearch;
 use yii\web\Controller;
@@ -69,10 +70,20 @@ class UsuarioController extends Controller
     {
         $model = new Usuario();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load(Yii::$app->request->post())) {
+                if ($model->validate())
+                {
+                 $model->username=$_POST ['usuario']['usermane'];
+                 $model->name=$_POST ['usuario']['name'];
+                 $model->apellido=$_POST ['usuario']['apellido'];
+                 $model->passwword=password_hash( $_POST ['usuario']['passwword'], PASSWORD_BCRYPT);
+                 $model->authKey=md5(random_bytes(5));
+                 $model->accesToken=md5(random_bytes(5), PASSWORD_DEFAULT);
+               
+                }
+
                 return $this->redirect(['view', 'username' => $model->username]);
-            }
+
         } else {
             $model->loadDefaultValues();
         }
@@ -93,7 +104,7 @@ class UsuarioController extends Controller
     {
         $model = $this->findModel($username);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post())) {
             return $this->redirect(['view', 'username' => $model->username]);
         }
 
