@@ -71,8 +71,9 @@ class UsuarioController extends Controller
         $model = new Usuario();
 
             if ($model->load(Yii::$app->request->post())) {
+                
                 if ($model->validate())
-                {
+                 {
                  $model->username=$_POST ['usuario']['usermane'];
                  $model->name=$_POST ['usuario']['name'];
                  $model->apellido=$_POST ['usuario']['apellido'];
@@ -80,8 +81,7 @@ class UsuarioController extends Controller
                  $model->authKey=md5(random_bytes(5));
                  $model->accesToken=md5(random_bytes(5), PASSWORD_DEFAULT);
                
-                }
-
+                 }
                 return $this->redirect(['view', 'username' => $model->username]);
 
         } else {
@@ -104,7 +104,7 @@ class UsuarioController extends Controller
     {
         $model = $this->findModel($username);
 
-        if ($this->request->isPost && $model->load($this->request->post())) {
+        if ($model->load(Yii::$app->request->post())) {
             return $this->redirect(['view', 'username' => $model->username]);
         }
 

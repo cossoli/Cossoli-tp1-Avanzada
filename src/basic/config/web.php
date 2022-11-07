@@ -19,6 +19,7 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        // punto 7 configuracion de yii para utilizar el nuevo metodo
         'user' => [
             'identityClass' => 'app\models\Usuario',
             'enableAutoLogin' => true,
