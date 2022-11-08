@@ -17,8 +17,12 @@ class UsuarioSearch extends Usuario
     public function rules()
     {
         return [
-            [['username', 'passwword', 'authKey', 'accesToken'], 'integer'],
-            [['name'], 'safe'],
+          
+            [['username', 'name', 'apellido', 'password', 'authKey', 'accessToken'], 'safe'],
+
+          
+            //  [['username', 'passwword', 'authKey', 'accesToken'], 'integer'],
+          // [['name'], 'safe'],
         ];
     }
 
@@ -60,6 +64,7 @@ class UsuarioSearch extends Usuario
         $query->andFilterWhere([
             'username' => $this->username,
             'passwword' => $this->passwword,
+            'apellido' => $this->apellido,
             'authKey' => $this->authKey,
             'accesToken' => $this->accesToken,
         ]);

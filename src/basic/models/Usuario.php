@@ -31,11 +31,12 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            //[['passwword', 'authKey', 'accesToken'], 'default', 'value' => null],
-            //[['passwword', 'authKey', 'accesToken'], 'integer'],
+            [['username', 'name'], 'required'],
+            [['passwword', 'authKey', 'accesToken'], 'default', 'value' => null],
+            [['passwword', 'authKey', 'accesToken'], 'integer'],
             [['name'], 'string', 'max' => 80],
-            [['apellido', 'required '], 'string', 'max' => 255],
+            [['apellido', 'apellido'], 'required'],
+            [['apellido'], 'string', 'max' => 255],
         ];
     }
 
@@ -48,9 +49,9 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'username' => 'Username',
             'name' => 'name',
             'passwword' => 'Passwword',
-            'authKey' => 'AuthKey',
-            'accesToken' => 'AccesToken',
-            'apellido' => 'apellido',
+            'authKey' => 'Auth Key',
+            'accesToken' => 'Acces Token',
+            'apellido' => 'Apellido',
         ];
     }
 

@@ -70,7 +70,10 @@ class UsuarioController extends Controller
     {
         $model = new Usuario();
 
-            if ($model->load(Yii::$app->request->post())) {
+        if ($this->request->isPost) {
+
+            if ($model->load($this->request->post())) { 
+
                 
                 if ($model->validate())
                  {
@@ -79,13 +82,21 @@ class UsuarioController extends Controller
                  $model->apellido=$_POST ['usuario']['apellido'];
                  $model->passwword=password_hash( $_POST ['usuario']['passwword'], PASSWORD_BCRYPT);
                  $model->authKey=md5(random_bytes(5));
-                 $model->accesToken=md5(random_bytes(5), PASSWORD_DEFAULT);
-               
-                 }
-                return $this->redirect(['view', 'username' => $model->username]);
+                 $model->accesToken=password_hash(random_bytes(5), PASSWORD_DEFAULT);
+                 if ($model->save()){
+                   
+                    return $this->redirect(['view', 'username' => $model->username]);
 
+                } else {
+                    $model->getErrors();
+                }
+            }
+        }
+                
+  
         } else {
-            $model->loadDefaultValues();
+           $model->getErrors();
+
         }
 
         return $this->render('create', [
@@ -104,7 +115,8 @@ class UsuarioController extends Controller
     {
         $model = $this->findModel($username);
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+
             return $this->redirect(['view', 'username' => $model->username]);
         }
 
