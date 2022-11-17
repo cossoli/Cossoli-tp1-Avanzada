@@ -41,6 +41,7 @@ $config = [
                 ],
             ],
         ],
+        // punto 1 tp3 url manager habilitado
         'db' => $db,
         
         'urlManager' => [
