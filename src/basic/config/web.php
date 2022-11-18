@@ -52,6 +52,12 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+// punto 3 normalizacion de urls
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'pluralize' => false,
+                    'controller' => 'apiv1/usuario',
+                ]
             ],
         ],
 
